@@ -2,9 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'page_tracker_aware.dart';
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'page_load_provider.dart';
-import 'package:flutter/scheduler.dart';
 
 // 监控页面加载时长
 mixin PageLoadMixin<T extends StatefulWidget> on State<T>, PageTrackerAware {
@@ -33,7 +31,7 @@ mixin PageLoadMixin<T extends StatefulWidget> on State<T>, PageTrackerAware {
     Duration renderTime = _nextFrameTime.difference(_rebuildStartTime);
 
     if (PageLoadProvider.of(context) != 'pro') {
-      Fluttertoast.showToast(msg: "加载时长：${totalTime.inMilliseconds}", fontSize: 16);
+      print("加载时长：${totalTime.inMilliseconds}");
     }
 
     didPageLoaded(totalTime, buildTime, requestTime, renderTime);

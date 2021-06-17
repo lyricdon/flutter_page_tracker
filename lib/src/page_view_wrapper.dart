@@ -34,10 +34,8 @@ class PageViewWrapper extends StatefulWidget {
   static Stream<PageTrackerEvent> of(BuildContext context, int index) {
     try {
       assert(index >= 0);
-      List<Stream<PageTrackerEvent>> broadCaseStreams = (context
-          .ancestorStateOfType(
-          TypeMatcher<PageViewWrapperState>()) as PageViewWrapperState)
-          .broadCaseStreams;
+      List<Stream<PageTrackerEvent>> broadCaseStreams = context
+          .findAncestorStateOfType<PageViewWrapperState>().broadCaseStreams;
       assert(index < broadCaseStreams.length);
 
       return broadCaseStreams[index];
